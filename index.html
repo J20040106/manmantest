@@ -171,6 +171,8 @@
 			$('.result-message').html(result);
 			
 			for (let i = 0; i < maxPredictions; i++) {
+				if(prediction[i].className=="남자")
+					prediction[i].className="일반인";
 				const classPrediction =prediction[i].className+" : "+prediction[i].probability.toFixed(size)*100+"%";
 				labelContainer.childNodes[i].innerHTML = classPrediction;
 			}
