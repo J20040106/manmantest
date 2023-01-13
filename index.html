@@ -118,7 +118,7 @@
 		// More API functions here:
 		// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 		// the link to your model provided by Teachable Machine export panel
-		const URL = "https://teachablemachine.withgoogle.com/models/oTizdOQYJ/";
+		const URL = "https://teachablemachine.withgoogle.com/models/OHWFClg7p/";
 		let model, webcam, labelContainer, maxPredictions;
 		// Load the image model and setup the webcam
 		async function init() {
@@ -151,21 +151,13 @@
             var p="당신은 ";
             var b="입니다";
             var result;
-			switch(prediction[0].className){
-				case "보추":
-                result=Result(prediction[0].probability.toFixed(2)*100,"보추")
-					break;
-				case "남자":
-                    result=Result(prediction[0].probability.toFixed(2)*100,"일반인")
-					break;
-				case "상남자":
-                    result=Result(prediction[0].probability.toFixed(2)*100,"상남자")
-					break;
-				case "쇼타":
-                    result=Result(prediction[0].probability.toFixed(2)*100,"쇼타")
-					break;
-				default:
-                    result="오류 : "+Result(0,"여자")
+			if(prediction[0].probability.toFixed(2)*100<=1)
+			{
+				result="에러 : 당신은 여자입니다";
+			}
+			else
+			{
+				result=Result(prediction[0].probability.toFixed(2)*100,prediction[0].className);
 			}
 			$('.result-message').html(result);
 			
