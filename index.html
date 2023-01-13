@@ -150,32 +150,27 @@
 			var resultMessage;
             var p="당신은 ";
             var b="입니다";
-			var size=2;
             var result;
-			if((prediction[i].probability.toFixed(size)*100)>=1)
-			{
-				switch(prediction[0].className){
-					case "보추":
-					result=Result(prediction[0].probability.toFixed(size)*100,"보추")
-						break;
-					case "남자":
-						result=Result(prediction[0].probability.toFixed(size)*100,"일반인")
-						break;
-					case "상남자":
-						result=Result(prediction[0].probability.toFixed(size)*100,"상남자")
-						break;
-					case "쇼타":
-						result=Result(prediction[0].probability.toFixed(size)*100,"쇼타")
-						break;
-				}
-			}else
-				result="오류 : "+Result(0,"여자");
+			switch(prediction[0].className){
+				case "보추":
+                result=Result(prediction[0].probability.toFixed(2)*100,"보추")
+					break;
+				case "남자":
+                    result=Result(prediction[0].probability.toFixed(2)*100,"일반인")
+					break;
+				case "상남자":
+                    result=Result(prediction[0].probability.toFixed(2)*100,"상남자")
+					break;
+				case "쇼타":
+                    result=Result(prediction[0].probability.toFixed(2)*100,"쇼타")
+					break;
+				default:
+                    result="오류 : "+Result(0,"여자")
+			}
 			$('.result-message').html(result);
 			
 			for (let i = 0; i < maxPredictions; i++) {
-				if(prediction[i].className=="남자")
-					prediction[i].className="일반인";
-				const classPrediction =prediction[i].className+" : "+prediction[i].probability.toFixed(size)*100+"%";
+				const classPrediction =prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
 				labelContainer.childNodes[i].innerHTML = classPrediction;
 			}
 		}
