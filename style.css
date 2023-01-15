@@ -105,7 +105,7 @@ body {
     text-transform: uppercase;
     font-weight: 700;
   }
-  
+  navbar navbar-expand-lg navbar-light 
   .remove-image:hover {
     background: #3d0454;
     color: #9900d6;
@@ -126,11 +126,11 @@ body {
     font-family: NanumSquareR;
     line-height: 1.68;
     text-align: left;
-    color: #35465d; 
+    color: #3D0454; 
   }
   
   .navbar-light .navbar-toggler {
-      border-color: #ffffff;
+      border-color: #3D0454;
   }
   
   .section {
@@ -167,7 +167,7 @@ body {
       font-size: 1.5rem;
       line-height: 1.71;
       text-align: center;
-      color: #f73737;
+      color: #3D0454;
       text-decoration: underline;
   }
   
