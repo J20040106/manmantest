@@ -147,7 +147,6 @@
 				};
 				reader.readAsDataURL(input.files[0]);
 				init().then(()=>{
-					console.log("hello");
 					predict();
 				});
 				
@@ -195,7 +194,6 @@
         }
         function ResultData(data,result,returntext) {
 			data=parseInt(data.toFixed(2)*100);
-			console.log(data)
 			if(data<100)
 			{
 				return returntext;
@@ -204,12 +202,26 @@
 				return "당신은 완벽한 "+result+"입니다.";
 			}
         }
-        async function Copy(p,name) {
+        async function Copy() {
 			var image = document.getElementById("face-image")
 			const prediction = await model.predict(image, false);
 			prediction.sort((a,b)=>parseFloat(b.probability)-parseFloat(a.probability));
-			for(i=0;i<maxPredictions;i++)
-				console.log(prediction[0].className+"\n");
+			copytext="당신의 결과\n"
+			for (let i = 0; i < maxPredictions; i++) {
+				copytext+="\n"+prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
+			}
+			navigator.clipboard.writeText(copytext).then(function() {
+				alert("복사 완료");
+			}, function(err) {
+				var r = confirm("복사에 실패했습니다.\n다시 복사 하시겠습니까?");
+				if (r == true) {
+					Copy()
+				}else
+				{
+					alert("복사를 취소 하였습니다");
+				}
+			});
+			
         }
 
 		// run the webcam image through the image model
@@ -217,9 +229,7 @@
 			// predict can take in an image, video or canvas html element
 			var image = document.getElementById("face-image")
 			const prediction = await model.predict(image, false);
-			console.log(prediction);
 			prediction.sort((a,b)=>parseFloat(b.probability)-parseFloat(a.probability));
-			console.log(prediction[0].className);
 			var resultMessage;
             var resultTitle="", resultExplain, resultData;
 			var TMP="다른 결과";//에러 아닐시 나오는 값
