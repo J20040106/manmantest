@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 
@@ -139,8 +140,16 @@
         function ResultTitle(p,name) {
             return "당신은 "+p+"% "+name+"입니다"
         }
-        function ResultCeleb(num) {
-            return "당신의 결과는 "+num+"번째로 좋습니다"
+        function ResultData(data,result,returntext) {
+			data=data.toFixed(2)*100;
+			console.log(data)
+			if(data<100)
+			{
+				return returntext;
+			}else
+			{
+				return "당신은 완벽한 "+result+"입니다.";
+			}
         }
 		function makeBar(x) {
  			 const barX = document.getElementById("bar-x");
@@ -156,55 +165,53 @@
 			prediction.sort((a,b)=>parseFloat(b.probability)-parseFloat(a.probability));
 			console.log(prediction[0].className);
 			var resultMessage;
-            var p="당신은 ";
-            var b="입니다";
-            var resultTitle, resultExplain, resultCeleb;
+            var resultTitle, resultExplain, resultData;
+			var TMP="다른 결과";//에러 아닐시 나오는 값
+			for (let i = 0; i < maxPredictions; i++) {
+				TMP+="<br>"+prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
+			}
 			if(prediction[0].probability.toFixed(2)*100<=1)
 			{
 				resultTitle="에러";
 				resultExplain="당신은 여자이거나 AI가 잠깐 오류 난거일 수도 있습니다";
-				resultCeleb="F5를 눌러서 다시 실행해보세요";
+				resultData="F5를 눌러서 다시 실행해보세요";//에러이면 해결 방안 표시
 			}
 			else
 			{
 				switch(prediction[0].className){
-				case "보추":
-            		resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"보추");
-					resultExplain="당신은 여장을 즐기거나 여성스럽군요(츄릅...♥)<br>만약 상남자가 되고 싶으시면 일단 여장을 하지 마세요"
-				 	resultCeleb=ResultCeleb(4);
-					break;
-				case "일반인":
-					resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"일반인");
-					resultExplain="당신은 어디에서나 볼수 있는 흔한 타입이군요<br>만약 상남자가 되고 싶으시면 웨이트 운동을 하세요"
-					resultCeleb=ResultCeleb(2);
-					break;
-				case "상남자":
-					resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"상남자");
-					resultExplain="당신은 운동을 즐기고 근육이 많은 타입이군요<br>만약 상남자를 유지하고 싶으시면 하던 운동을 계속 하세요"
-				 	resultCeleb=ResultCeleb(1);
-					break;
-				case "쇼타":
-					resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"쇼타");
-					resultExplain="당신은 귀엽고 어려보이는 타입이군요<br>만약 상남자가 되고 싶으시면 아무 운동이나 하세요"
-				  	resultCeleb=ResultCeleb(3);
-					break;
-				default:
-				resultTitle="에러";
-				resultExplain="당신은 여자이거나 AI가 잠깐 오류 난거일 수도 있습니다";
-				resultCeleb="F5를 눌러서 다시 실행해보세요";
+					case "보추":
+						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"보추");
+						resultExplain="당신은 여장을 즐기거나 여성스럽군요(츄릅...♥)<br>만약 상남자가 되고 싶으시면 일단 여장을 하지 마세요"
+						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
+						break;
+					case "일반인":
+						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"일반인");
+						resultExplain="당신은 어디에서나 볼수 있는 흔한 타입이군요<br>만약 상남자가 되고 싶으시면 웨이트 운동을 하세요"
+						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
+						break;
+					case "상남자":
+						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"상남자");
+						resultExplain="당신은 운동을 즐기고 근육이 많은 타입이군요<br>만약 상남자를 유지하고 싶으시면 하던 운동을 계속 하세요"
+						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
+						break;
+					case "쇼타":
+						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"쇼타");
+						resultExplain="당신은 귀엽고 어려보이는 타입이군요<br>만약 상남자가 되고 싶으시면 아무 운동이나 하세요"
+						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
+						break;
+					default:
+					resultTitle="에러";
+					resultExplain="당신은 여자이거나 AI가 잠깐 오류 난거일 수도 있습니다";
+					resultData="F5를 눌러서 다시 실행해보세요";
+				}
 			}
-			}
+			
 			
 			var title = "<div class='result-title'>" + resultTitle + "</div>"
             var explain = "<div class='result-explain pt-2'>" + resultExplain + "</div>"
-            var celeb = "<div class='result-celeb pt-2 pb-2'>" + resultCeleb + "</div>"
-            $('.result-message').html(title + explain + celeb);
-			/*
-				for (let i = 0; i < maxPredictions; i++) {
-				const classPrediction =prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
-				labelContainer.childNodes[i].innerHTML = classPrediction;
-			}
-			*/
+            var Data = "<div class='result-Data pt-2 pb-2'>" + resultData + "</div>"
+            $('.result-message').html(title + explain + Data);
+			
             
 		}
 	</script>
