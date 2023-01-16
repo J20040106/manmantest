@@ -218,12 +218,20 @@
 			for (let i = 0; i < maxPredictions; i++) {
 				resulttext +=  prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%"+"\n";
 			}
-			window.navigator.share({
-				title: "상남자 테스트", // 공유될 제목
-				text: resulttext, // 공유될 설명
-				url: "https://manmantest.netlify.app/index.html", // 공유될 URL
-				files: [], // 공유할 파일 배열
-			});
+			try {
+				await navigator.share({
+				title: "상남자 테스트",
+				text: "\n"+resulttext+"당신은 상남자? 일반인? 보추? 쇼타?\n\n",
+				url: "https://manmantest.netlify.app/index.html",
+				});
+			} catch (e) {
+				var r = confirm("공유를 실패했습니다.\n다시 시도 하시겠습니까?");
+				if (r == true) {
+					Share()
+				} else {
+					alert("공유를 취소 하였습니다");
+				}
+			}
 		}
 		async function Copy() {
 			var image = document.getElementById("face-image")
@@ -234,7 +242,7 @@
 			for (let i = 0; i < maxPredictions; i++) {
 				copytext += "\n" + prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%";
 			}
-			copytext+="\nhttps://manmantest.netlify.app/index.html"
+			copytext+="\n당신은 상남자? 일반인? 보추? 쇼타?\n\nhttps://manmantest.netlify.app/index.html"
 			navigator.clipboard.writeText(copytext).then(function () {
 				alert("복사 완료");
 			}, function (err) {
