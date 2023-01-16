@@ -141,7 +141,7 @@
             return "당신은 "+p+"% "+name+"입니다"
         }
         function ResultData(data,result,returntext) {
-			data=data.toFixed(2)*100;
+			data=parseInt(data.toFixed(2)*100);
 			console.log(data)
 			if(data<100)
 			{
@@ -167,7 +167,7 @@
 			var resultMessage;
             var resultTitle="", resultExplain, resultData;
 			var TMP="다른 결과";//에러 아닐시 나오는 값
-			for (let i = 0; i < maxPredictions; i++) {
+			for (let i = 1; i < maxPredictions; i++) {
 				TMP+="<br>"+prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
 			}
 			if(prediction[0].probability.toFixed(2)*100<=1)
