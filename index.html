@@ -214,14 +214,13 @@
 			const prediction = await model.predict(image, false);
 			prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
 			var name = prompt("당신의 이름을 입력하세요 : ");
-			copytext = name + "님의 결과\n"
-			resulttext=""
+			resulttext = name + "님의 결과\n"
 			for (let i = 0; i < maxPredictions; i++) {
 				resulttext +=  prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%"+"\n";
 			}
 			window.navigator.share({
 				title: "상남자 테스트", // 공유될 제목
-				text: copytext, // 공유될 설명
+				text: resulttext, // 공유될 설명
 				url: "https://manmantest.netlify.app/index.html", // 공유될 URL
 				files: [], // 공유할 파일 배열
 			});
