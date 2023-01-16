@@ -84,6 +84,8 @@
 			<div class="image-title-wrap">
 				<button type="button" onclick="removeUpload()" class="remove-image">사진 바꾸기
 				</button>
+				<button type="button" onclick="Copy()" class="remove-image">결과 복사하기
+				</button>
 			</div>
 		</div>
 	</div>
@@ -202,10 +204,13 @@
 				return "당신은 완벽한 "+result+"입니다.";
 			}
         }
-		function makeBar(x) {
- 			 const barX = document.getElementById("bar-x");
- 			 barX.style.width = `${x}%`;
-		}
+        async function Copy(p,name) {
+			var image = document.getElementById("face-image")
+			const prediction = await model.predict(image, false);
+			prediction.sort((a,b)=>parseFloat(b.probability)-parseFloat(a.probability));
+			for(i=0;i<maxPredictions;i++)
+				console.log(prediction[0].className+"\n");
+        }
 
 		// run the webcam image through the image model
 		async function predict() {
