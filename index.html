@@ -90,7 +90,25 @@
 	
             
 	<div id="webcam-container"></div>
-	<div id="disqus_thread"></div>
+	<!-- 라이브리 시티 설치 코드 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81NzkzOS8zNDQwMg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+</div>
+<!-- 시티 설치 코드 끝 -->
+	<!--<div id="disqus_thread"></div>
 	<script>
 		/**
 		*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -107,7 +125,7 @@
 		s.setAttribute('data-timestamp', +new Date());
 		(d.head || d.body).appendChild(s);
 		})();
-	</script>
+	</script>-->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
