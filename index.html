@@ -58,6 +58,8 @@
 	<section class="section">
 		<h1 class="title">상남자 테스트</h1>
 		<h2 class="subtitle">당신은 상남자? 일반인? 보추? 쇼타?</h2>
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
+		<div class="addthis_inline_share_toolbox_ff4f"></div>
 	</section>
 	
 	<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -73,12 +75,10 @@
 			</div>
 		</div>
 		<div class="file-upload-content">
-			<img class="file-upload-image" id="dress-image" src="#" alt="your image" />
+			<img class="file-upload-image" id="face-image" src="#" alt="your image" />
 			
 			<p class="result-message">	</p>
 				<div id="label-container"></div>
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox_ff4f"></div>
 			<div class="image-title-wrap">
 				<button type="button" onclick="removeUpload()" class="remove-image">사진 바꾸기
 				</button>
@@ -173,7 +173,7 @@
 		// run the webcam image through the image model
 		async function predict() {
 			// predict can take in an image, video or canvas html element
-			var image = document.getElementById("dress-image")
+			var image = document.getElementById("face-image")
 			const prediction = await model.predict(image, false);
 			console.log(prediction);
 			prediction.sort((a,b)=>parseFloat(b.probability)-parseFloat(a.probability));
