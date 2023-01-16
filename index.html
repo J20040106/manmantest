@@ -206,7 +206,8 @@
 			var image = document.getElementById("face-image")
 			const prediction = await model.predict(image, false);
 			prediction.sort((a,b)=>parseFloat(b.probability)-parseFloat(a.probability));
-			copytext="당신의 결과\n"
+			var retVal = prompt("당신의 이름을 입력하세요 : ");
+			copytext="retVal님의 결과\n"
 			for (let i = 0; i < maxPredictions; i++) {
 				copytext+="\n"+prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
 			}
