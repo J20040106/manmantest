@@ -1,0 +1,3 @@
+User-agent: *
+Allow:/
+Sitemap : https://manmantest.netlify.app/sitemap.xml
