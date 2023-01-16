@@ -209,7 +209,7 @@
 			var name = prompt("당신의 이름을 입력하세요 : ");
 			copytext=name+"님의 결과\n"
 			for (let i = 0; i < maxPredictions; i++) {
-				copytext+="\n"+prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
+				copytext+="\n"+prediction[i].className+" : "+parseInt(prediction[i].probability.toFixed(2)*100)+"%";
 			}
 			navigator.clipboard.writeText(copytext).then(function() {
 				alert("복사 완료");
