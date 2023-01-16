@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1356873271260193"
@@ -234,6 +235,7 @@
 			for (let i = 0; i < maxPredictions; i++) {
 				copytext += "\n" + prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%";
 			}
+			copytext+="\nhttps://manmantest.netlify.app/index.html"
 			navigator.clipboard.writeText(copytext).then(function () {
 				alert("복사 완료");
 			}, function (err) {
