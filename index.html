@@ -165,7 +165,7 @@
 			prediction.sort((a,b)=>parseFloat(b.probability)-parseFloat(a.probability));
 			console.log(prediction[0].className);
 			var resultMessage;
-            var resultTitle, resultExplain, resultData;
+            var resultTitle="", resultExplain, resultData;
 			var TMP="다른 결과";//에러 아닐시 나오는 값
 			for (let i = 0; i < maxPredictions; i++) {
 				TMP+="<br>"+prediction[i].className+" : "+prediction[i].probability.toFixed(2)*100+"%";
@@ -180,24 +180,16 @@
 			{
 				switch(prediction[0].className){
 					case "보추":
-						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"보추");
 						resultExplain="당신은 여장을 즐기거나 여성스럽군요(츄릅...♥)<br>만약 상남자가 되고 싶으시면 일단 여장을 하지 마세요"
-						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
 						break;
 					case "일반인":
-						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"일반인");
 						resultExplain="당신은 어디에서나 볼수 있는 흔한 타입이군요<br>만약 상남자가 되고 싶으시면 웨이트 운동을 하세요"
-						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
 						break;
 					case "상남자":
-						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"상남자");
 						resultExplain="당신은 운동을 즐기고 근육이 많은 타입이군요<br>만약 상남자를 유지하고 싶으시면 하던 운동을 계속 하세요"
-						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
 						break;
 					case "쇼타":
-						resultTitle=ResultTitle(prediction[0].probability.toFixed(2)*100,"쇼타");
 						resultExplain="당신은 귀엽고 어려보이는 타입이군요<br>만약 상남자가 되고 싶으시면 아무 운동이나 하세요"
-						resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
 						break;
 					default:
 					resultTitle="에러";
@@ -205,8 +197,11 @@
 					resultData="F5를 눌러서 다시 실행해보세요";
 				}
 			}
-			
-			
+			if(resultTitle=="")
+			{
+				resultTitle=ResultTitle(parseInt(prediction[0].probability.toFixed(2)*100),(prediction[0].className));
+				resultData=ResultData(prediction[0].probability,prediction[0].className,TMP);
+			}
 			var title = "<div class='result-title'>" + resultTitle + "</div>"
             var explain = "<div class='result-explain pt-2'>" + resultExplain + "</div>"
             var Data = "<div class='result-Data pt-2 pb-2'>" + resultData + "</div>"
