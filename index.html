@@ -97,6 +97,29 @@
 
 
 	<div id="webcam-container"></div>
+	<center>
+		<!--쿠팡 파트너스-->
+		<div id="ad">
+			<br>
+			<h1>상남자 테스트 작가의 책</h1>
+			<iframe src="https://coupa.ng/cdqkkP" width="120" height="240" frameborder="0" scrolling="no"
+				referrerpolicy="unsafe-url"></iframe>
+			<iframe src="https://coupa.ng/cdqkmd" width="120" height="240" frameborder="0" scrolling="no"
+				referrerpolicy="unsafe-url"></iframe>
+			<iframe src="https://coupa.ng/cdqknk" width="120" height="240" frameborder="0" scrolling="no"
+				referrerpolicy="unsafe-url"></iframe>
+			<br>이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+		</div>
+		<br><br>
+		<h1>깃허브 소스</h1>
+		<iframe src="https://coupa.ng/cdqkkP" width="120" height="240" frameborder="0" scrolling="no"
+			referrerpolicy="unsafe-url"></iframe>
+		<iframe src="https://coupa.ng/cdqkmd" width="120" height="240" frameborder="0" scrolling="no"
+			referrerpolicy="unsafe-url"></iframe>
+		<iframe src="https://coupa.ng/cdqknk" width="120" height="240" frameborder="0" scrolling="no"
+			referrerpolicy="unsafe-url"></iframe>
+		<br>이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+	</center>
 	<!-- 라이브리 시티 설치 코드 -->
 	<div id="lv-container" data-id="city" data-uid="MTAyMC81NzkzOS8zNDQwMg==">
 		<script type="text/javascript">
@@ -213,23 +236,22 @@
 				return "당신은 완벽한 " + result + "입니다.";
 			}
 		}
-		function InputName()
-		{
+		function InputName() {
 			var name = prompt("당신의 이름을 입력하세요 : ");
 			resulttext = name + "님의 결과\n"
 			return resulttext
 		}
 		async function Share() {
-			name=InputName()
-			result=name+copysharedata
+			name = InputName()
+			result = name + copysharedata
 			await navigator.share({
 				text: copysharedata
 			});
 		}
-		
+
 		async function Copy() {
-			name=InputName()
-			copytext=name+copysharedata
+			name = InputName()
+			copytext = name + copysharedata
 			navigator.clipboard.writeText(copytext).then(function () {
 				alert("복사 완료");
 			}, function (err) {
@@ -284,7 +306,7 @@
 				resultTitle = ResultTitle(parseInt(prediction[0].probability.toFixed(2) * 100), (prediction[0].className));
 				resultData = ResultData(prediction[0].probability, prediction[0].className, TMP);
 			}
-			copysharedata= ""
+			copysharedata = ""
 			for (let i = 0; i < maxPredictions; i++) {
 				copysharedata += "\n" + prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%";
 			}
