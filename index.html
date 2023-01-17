@@ -226,6 +226,7 @@
 		}
 		function InputName() {
 			var name = prompt("당신의 이름을 입력하세요 : ");
+			console.log(name)
 			resulttext = name + "님의 결과\n"
 			return resulttext
 		}
@@ -233,7 +234,7 @@
 			name = InputName()
 			result = name + copysharedata
 			await navigator.share({
-				text: copysharedata
+				text: result
 			});
 		}
 
@@ -298,7 +299,7 @@
 			for (let i = 0; i < maxPredictions; i++) {
 				copysharedata += "\n" + prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%";
 			}
-			copysharedata += "\n당신은 상남자? 일반인? 보추? 쇼타?\n\nhttps://manmantest.netlify.app/index.html"
+			copysharedata += "\n당신은 상남자? 일반인? 보추? 쇼타?\n상남자 테스트로 알아보자\n\nhttps://manmantest.netlify.app/index.html"
 			var title = "<div class='result-title'>" + resultTitle + "</div>"
 			var explain = "<div class='result-explain pt-2'>" + resultExplain + "</div>"
 			var Data = "<div class='result-Data pt-2 pb-2'>" + resultData + "</div>"
