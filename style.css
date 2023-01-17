@@ -221,9 +221,11 @@ navbar navbar-expand-lg navbar-light
   color: #fff;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100;300&display=swap');
 .ad {
+  font-family: 'Dongle', sans-serif;
   font-family: 'Nanum Pen Script', cursive;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .ad h1 {
   font-size: 2rem;
