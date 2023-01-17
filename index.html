@@ -185,6 +185,7 @@
 		// the link to your model provided by Teachable Machine export panel
 		const URL = "https://teachablemachine.withgoogle.com/models/OHWFClg7p/";
 		let model, webcam, labelContainer, maxPredictions;
+		copysharedata;
 		// Load the image model and setup the webcam
 		async function init() {
 			const modelURL = URL + "model.json";
@@ -212,31 +213,23 @@
 				return "당신은 완벽한 " + result + "입니다.";
 			}
 		}
-		async function Share() {
-			var image = document.getElementById("face-image")
-			const prediction = await model.predict(image, false);
-			prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
+		function InputName()
+		{
 			var name = prompt("당신의 이름을 입력하세요 : ");
 			resulttext = name + "님의 결과\n"
-			for (let i = 0; i < maxPredictions; i++) {
-				resulttext += prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%" + "\n";
-			}
+			return resulttext
+		}
+		async function Share() {
+			name=InputName()
+			result=name+copysharedata
 			await navigator.share({
-				title: "상남자 테스트",
-				text: "\n" + resulttext + "\n당신은 상남자? 일반인? 보추? 쇼타?\n상남자 테스트로 알아보자\n",
-				url: "https://manmantest.netlify.app/index.html",
+				text: copysharedata
 			});
 		}
+		
 		async function Copy() {
-			var image = document.getElementById("face-image")
-			const prediction = await model.predict(image, false);
-			prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
-			var name = prompt("당신의 이름을 입력하세요 : ");
-			copytext = name + "님의 결과\n"
-			for (let i = 0; i < maxPredictions; i++) {
-				copytext += "\n" + prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%";
-			}
-			copytext += "\n당신은 상남자? 일반인? 보추? 쇼타?\n\nhttps://manmantest.netlify.app/index.html"
+			name=InputName()
+			copytext=name+copysharedata
 			navigator.clipboard.writeText(copytext).then(function () {
 				alert("복사 완료");
 			}, function (err) {
@@ -291,6 +284,11 @@
 				resultTitle = ResultTitle(parseInt(prediction[0].probability.toFixed(2) * 100), (prediction[0].className));
 				resultData = ResultData(prediction[0].probability, prediction[0].className, TMP);
 			}
+			copysharedata= ""
+			for (let i = 0; i < maxPredictions; i++) {
+				copysharedata += "\n" + prediction[i].className + " : " + parseInt(prediction[i].probability.toFixed(2) * 100) + "%";
+			}
+			copysharedata += "\n당신은 상남자? 일반인? 보추? 쇼타?\n\nhttps://manmantest.netlify.app/index.html"
 			var title = "<div class='result-title'>" + resultTitle + "</div>"
 			var explain = "<div class='result-explain pt-2'>" + resultExplain + "</div>"
 			var Data = "<div class='result-Data pt-2 pb-2'>" + resultData + "</div>"
