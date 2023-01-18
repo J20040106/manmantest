@@ -74,7 +74,7 @@
 			<input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
 			<div class="drag-text">
 				<img src="icon.png" class="mt-5 pt-5 upload" style="width:20%">
-				<h3 class="mb-5 pd-5 pt-4 upload-text">당신의 외모나 케릭터를 업로드 해주세요</h3>
+				<h3 class="mb-5 pd-5 pt-4 upload-text">당신의 외모나 케릭터를 업로드 해주세요<br>(쿠팡 사이트를 둘러다 보면 AI가 결과를 알려줍니다)</h3>
 			</div>
 		</div>
 		<div class="file-upload-content">
@@ -105,7 +105,7 @@
 			<br>
 			<iframe src="https://ads-partners.coupang.com/widgets.html?id=632374&template=carousel&trackingCode=AF3463685&subId=&width=600&height=140" width="auto" height="auto" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe>
 			<h1>상남자 테스트 제작자의 책</h1>
-			<br>이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+			<br>쿠팡 파트너스 활동으로 제작자에게 수익이 들어갑니다
 		</div>
 	</center>
 	<!-- 라이브리 시티 설치 코드 -->
@@ -191,6 +191,10 @@
 		});
 	</script>
 	<script type="text/javascript">
+		//쿠팡 파트너스
+		function OpenCoupang() {
+  			window.open("https://link.coupang.com/a/MFzvx");
+		}
 		// More API functions here:
 		// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 		// the link to your model provided by Teachable Machine export panel
@@ -256,6 +260,7 @@
 
 		// run the webcam image through the image model
 		async function predict() {
+			OpenCoupang()
 			// predict can take in an image, video or canvas html element
 			var image = document.getElementById("face-image")
 			const prediction = await model.predict(image, false);
