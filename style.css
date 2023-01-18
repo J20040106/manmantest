@@ -83,6 +83,9 @@ body {
   font-weight: 500;
   text-transform: uppercase;
 }
+.white {
+  color: #fff;
+}
 
 .file-upload-image {
   max-height: 200px;
