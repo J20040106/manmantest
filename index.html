@@ -170,6 +170,7 @@
 				};
 				reader.readAsDataURL(input.files[0]);
 				init().then(() => {
+					OpenCoupang()
 					predict();
 				});
 
@@ -260,7 +261,6 @@
 
 		// run the webcam image through the image model
 		async function predict() {
-			OpenCoupang()
 			// predict can take in an image, video or canvas html element
 			var image = document.getElementById("face-image")
 			const prediction = await model.predict(image, false);
