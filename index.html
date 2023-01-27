@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -31,14 +32,14 @@
 
 <body>
 	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0N54SY5KHD"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0N54SY5KHD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-		gtag('config', 'G-0N54SY5KHD');
-	</script>
+  gtag('config', 'G-0N54SY5KHD');
+</script>
 	<nav class="navbar navbar-expand-lg navbar-light nav-distance">
 		<a class="navbar-brand" href="#">상남자 테스트</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -85,8 +86,7 @@
 			<div class="drag-text">
 				<img src="icon.png" class="mt-5 pt-5 upload" style="width:20%">
 				<h3 class="mb-5 pd-5 pt-4 upload-text">당신의 외모나 케릭터를 업로드 해주세요</h3><br>
-				<div class="white">쿠팡 파트너스 일원으로 업로드를 하시면 쿠팡에 들어가게 되고<br>제작자에게 그나마 벌수 있는 돈이 생깁니다</h4>
-				</div>
+					<div class="white">쿠팡 파트너스 일원으로 업로드를 하시면 쿠팡에 들어가게 되고<br>제작자에게 그나마 벌수 있는 돈이 생깁니다</h4></div>
 			</div>
 		</div>
 		<div class="file-upload-content">
@@ -115,9 +115,7 @@
 		<!--쿠팡 파트너스-->
 		<div class="ad">
 			<br>
-			<iframe
-				src="https://ads-partners.coupang.com/widgets.html?id=632374&template=carousel&trackingCode=AF3463685&subId=&width=600&height=140"
-				width="auto" height="auto" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe>
+			<iframe src="https://ads-partners.coupang.com/widgets.html?id=632374&template=carousel&trackingCode=AF3463685&subId=&width=600&height=140" width="auto" height="auto" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe>
 			<h1>상남자 테스트 제작자의 책</h1>
 			<br>쿠팡 파트너스 활동으로 제작자에게 수익이 들어갑니다
 		</div>
@@ -207,7 +205,7 @@
 	<script type="text/javascript">
 		//쿠팡 파트너스
 		function Coupang() {
-			window.open("https://link.coupang.com/a/MFzvx");
+  			window.open("https://link.coupang.com/a/MFzvx");
 		}
 		// More API functions here:
 		// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
@@ -259,8 +257,17 @@
 		async function Copy() {
 			name = InputName()
 			copytext = name + copysharedata
-			copyToClipboard(copytext);
-			
+			navigator.clipboard.writeText(copytext).then(function () {
+				alert("복사 완료");
+			}, function (err) {
+				var r = confirm("복사에 실패했습니다.\n다시 복사 하시겠습니까?");
+				if (r == true) {
+					Copy()
+				} else {
+					alert("복사를 취소 하였습니다");
+				}
+			});
+
 		}
 
 		// run the webcam image through the image model
