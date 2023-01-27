@@ -1,3 +1,4 @@
 User-agent: *
 Allow:/
 Sitemap : https://manmantest.netlify.app/sitemap.xml
+#DaumWebMasterTool:74cf1646ae04d94c33febb3b812a553a0aa49bd826585c34a1068fb6441509a4:KrZFfmu3MttAK7QA6AD67Q==
